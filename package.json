@@ -1,0 +1,26 @@
+{
+  "name": "assets_automation",
+  "version": "1.0.0",
+  "description": "Framework for Assets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lokesh",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^14.3.2",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "cypress-xpath": "^2.0.1"
+  },
+  "dependencies": {
+    "nodemailer": "^6.10.1"
+  },
+  "scripts": {
+  "test": "cypress run",
+  "report": "node send-report.js",
+  "test-and-send": "npm run test && npm run report"
+}
+
+}
