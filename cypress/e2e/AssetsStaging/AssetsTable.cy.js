@@ -3,7 +3,6 @@ describe('Assets Table', () => {
     
   
     Cypress.on('uncaught:exception', (err, runnable) => {
-        // Prevent Cypress from failing the test
         return false;
     });
     it('should visit the Assets Table page', () => {
@@ -16,9 +15,9 @@ describe('Assets Table', () => {
         cy.wait(5000)
         assetsTables.selectcompany()
         assetsTables.selectassetGroup()
-        //assetsTables.enterID()
-        //assetsTables.selectopenAsset()
-        //assetsTables.clickArrow()
+        assetsTables.enterID()
+        assetsTables.selectopenAsset()
+        assetsTables.clickArrow()
     })
 })
 })
