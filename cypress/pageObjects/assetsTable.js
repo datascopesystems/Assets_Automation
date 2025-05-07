@@ -12,6 +12,12 @@ class AssetsTable{
     ID="[aria-colindex='1'] > .dx-editor-with-menu > .dx-editor-container > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
     openAsset="#manage-assets-table_s_show-master-detail-133452 > :nth-child(2)"
     Arrow="#manage-assets-table_s_show-master-detail-133452 > .svg-inline--fa > path"
+    notes="#asset-details_dta_asset-notes > .dx-field-value > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
+    purchaseValue="#asset-details_dffi_purchase-value > .dx-field-value > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
+    saveDetails="#asset-details_db_save"
+    assetFiles="#assets-master-details_t_files"
+    fileUpload="#asset-file_fr_asset-files_file-uploader > .dx-fileuploader-wrapper > .dx-fileuploader-container > .dx-fileuploader-content > .dx-fileuploader-input-wrapper > .dx-widget > .dx-button-content"
+    fileSave="#asset-file_fr_asset-files_data-button_save"
     
     
 
@@ -73,6 +79,25 @@ class AssetsTable{
     }
     clickArrow(){
         cy.get(this.Arrow).click()
+    }
+    enternotes(){
+        cy.get(this.notes).type('This is a test note')
+    }
+    enterpurchaseValue(){
+        cy.get(this.purchaseValue).type('1000')
+    }
+    clicksaveDetails(){
+        cy.get(this.saveDetails).click()
+    }
+    selectassetFiles(){
+        cy.get(this.assetFiles).click()
+    }
+    selectfileUpload(){
+        cy.get(this.fileUpload).selectFile('cypress/fixtures/Test 3.jpg', { action: 'drag-drop' });
+        
+    }
+    clickfileSave(){
+        cy.get(this.fileSave).click()
     }
 
 
