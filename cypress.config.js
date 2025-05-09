@@ -1,6 +1,7 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
+  projectId: 'sucq2u',
   video: true,
   screenshotOnRunFailure: true,
   reporter: "cypress-mochawesome-reporter",
@@ -20,7 +21,8 @@ setupNodeEvents(on, config) {
   
       },
     },
-  });
+
+   });
  
 
 
