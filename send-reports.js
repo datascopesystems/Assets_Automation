@@ -1,5 +1,4 @@
-const nodemailer = require('nodemailer');
-const fs = require('fs');
+import nodemailer from 'nodemailer';
 
 let transporter = nodemailer.createTransport({
   service: 'gmail',

@@ -18,3 +18,4 @@ import './commands'
 require('cypress-xpath')
 import 'cypress-mochawesome-reporter/register'
 import 'cypress-file-upload';
+require('xlsx');
