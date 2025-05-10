@@ -10,8 +10,8 @@ class AssetsTable{
     company=".dx-row-inserted > [aria-describedby='dx-col-4'"
     assetGroup=".dx-row-inserted > [aria-describedby='dx-col-3']"
     ID="[aria-colindex='1'] > .dx-editor-with-menu > .dx-editor-container > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
-    openAsset="#manage-assets-table_s_show-master-detail-133514 > :nth-child(2)"
-    Arrow="#manage-assets-table_s_show-master-detail-133514 > .svg-inline--fa > path"
+    openAsset="#manage-assets-table_s_show-master-detail-133510 > :nth-child(2)"
+    Arrow="#manage-assets-table_s_show-master-detail-133510 > .svg-inline--fa > path"
     notes="#asset-details_dta_asset-notes > .dx-field-value > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
     purchaseValue="#asset-details_dffi_purchase-value > .dx-field-value > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
     saveDetails="#asset-details_db_save"
@@ -39,6 +39,8 @@ class AssetsTable{
     siteDocuments="#assets-master-details_t_site-documents"
     qrcode="#assets-master-details_t_qr-codes"
     qrGenerate="#asset-qr-code_db_save"
+    close=".css-1b172wj > .MuiButtonBase-root"
+    exportExcel=":nth-child(3) > .dx-item-content > .dx-widget > .dx-button-content > .dx-icon"
 
     
 
@@ -93,7 +95,7 @@ class AssetsTable{
     
     }
     enterID(){
-        cy.get(this.ID).type('133514')
+        cy.get(this.ID).type('133510')
     }
     selectopenAsset(){
         cy.get(this.openAsset).click()
@@ -185,6 +187,12 @@ class AssetsTable{
     }
     clickqrGenerate(){
         cy.get(this.qrGenerate).click()
+    }
+    clickclose(){
+        cy.get(this.close).click()
+    }
+    clickexportExcel(){
+        cy.get(this.exportExcel).click()
     }
 
     

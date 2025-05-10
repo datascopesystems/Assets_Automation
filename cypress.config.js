@@ -21,7 +21,8 @@ setupNodeEvents(on, config) {
   
       },
     },
-  });
+
+   });
  
 
 

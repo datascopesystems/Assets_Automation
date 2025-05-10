@@ -49,6 +49,8 @@ describe('Assets Table', () => {
         assetsTables.clicksiteDocuments()
         assetsTables.clcikqrcode()
         assetsTables.clickqrGenerate()
+        assetsTables.clickclose()
+        assetsTables.clickexportExcel()
 
     })
 })
