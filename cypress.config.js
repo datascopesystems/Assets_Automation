@@ -24,8 +24,13 @@ module.exports = defineConfig({
             if (!sheet) {
               throw new Error(`Sheet "${sheetName}" not found`);
             }
-            const data = xlsx.utils.sheet_to_json(sheet, { header: 0 });
-            return data;
+
+            // Read the sheet as JSON and include only columns A, B, C, D, E
+            const data = xlsx.utils.sheet_to_json(sheet, { header: 1 }); // Read all rows as arrays
+            const filteredData = data.map(row => 
+              row.slice(0, 5).join(' ') // Include only the first 5 columns (A, B, C, D, E) and add a space between columns
+            );
+            return filteredData;
           } catch (err) {
             console.error('Error reading Excel:', err);
             throw err;

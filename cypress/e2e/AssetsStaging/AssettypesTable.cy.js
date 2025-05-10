@@ -12,11 +12,11 @@ describe('Assets Table', () => {
         assettypesTable.validateAssetsTable();
         assettypesTable.clickassettypeRadio();
         assettypesTable.entersearchByID();
-        cy.wait(5000);
+        cy.wait(1000);
         assettypesTable.clickimportAssets();
-        cy.wait(5000);
+        cy.wait(1000);
         assettypesTable.getcompany();
-        cy.wait(5000);
+        cy.wait(1000);
 
         // Uncomment and use cy.task to fetch excelData
         cy.task('readExcel', {
