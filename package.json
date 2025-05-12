@@ -4,7 +4,9 @@
   "description": "Framework for Assets",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",
+    "report": "node send-report.js",
+    "test-and-send": "npm run test && npm run report"
   },
   "author": "Lokesh",
   "license": "ISC",
@@ -15,12 +17,7 @@
     "cypress-xpath": "^2.0.1"
   },
   "dependencies": {
-    "nodemailer": "^6.10.1"
-  },
-  "scripts": {
-  "test": "cypress run",
-  "report": "node send-report.js",
-  "test-and-send": "npm run test && npm run report"
-}
-
+    "nodemailer": "^6.10.1",
+    "xlsx": "^0.18.5"
+  }
 }
