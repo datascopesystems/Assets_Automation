@@ -8,6 +8,8 @@ class ManageInspections{
      From=":nth-child(2) > .dx-field > .dx-field-value > .dx-datebox > .dx-dropdowneditor-input-wrapper > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
      To=":nth-child(3) > .dx-field > .dx-field-value > .dx-datebox > .dx-dropdowneditor-input-wrapper > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
      Search=".col-md-1 > .MuiButtonBase-root"
+     viewFile="[aria-rowindex='1'] > .dx-command-edit > .dx-icon-file"
+     scrollBar="#root > div > div.MuiContainer-root.css-tcvbxc > div > div > div > div:nth-child(2) > div > div > div.dx-datagrid-rowsview.dx-scrollable.dx-visibility-change-handler.dx-scrollable-both.dx-scrollable-simulated > div > div > div.dx-scrollable-scrollbar.dx-widget.dx-scrollbar-horizontal.dx-scrollbar-hoverable > div"
 
 
 
@@ -35,8 +37,14 @@ class ManageInspections{
         clcickSearch(){
             cy.get(this.Search).click()
         }
+        clickscrollBar(){
+            cy.get(this.scrollBar).scrollTo('left', { ensureScrollable: false });
+        }
+        clickviewFile(){
+            cy.get(this.viewFile).click()
 
-        }  
+        } 
+        }
     
     export default ManageInspections
 
