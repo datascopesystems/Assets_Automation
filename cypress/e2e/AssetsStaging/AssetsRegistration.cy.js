@@ -8,10 +8,11 @@ describe('Assets Regisration', () => {
         return false;
     });
     it('should visit the Assets Registration page', () => {
+        const env=Cypress.env("env")
         //cy.Login()
         //cy.fixture('loginDetails').then(function(data){
         const assets = new AssetsRegistration()
-        assets.openwebsite()
+        assets.openwebsite(`https://www.datascopesystem.com/${env}/Frontend/registerAsset`)
         assets.clickBurgerMenu()
         assets.clickNavBar()
         assets.validateAssetsRegistration()

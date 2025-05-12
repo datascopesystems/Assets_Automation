@@ -1,6 +1,6 @@
 class AssetsRegistration {
 
-    website="https://www.datascopesystem.com/Assets_Staging/Frontend/registerAsset"
+    
     username="[name='Subject']"
     password="[name='Password']"
     loginButton="#loginButton"
@@ -33,8 +33,8 @@ class AssetsRegistration {
     
 
 
-    openwebsite(){
-        cy.visit(this.website)
+    openwebsite(url){
+        cy.visit(url)
         
     }
     enterUsername(username){
