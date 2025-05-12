@@ -17,6 +17,9 @@ describe('Manage Inspections', () => {
        manage.selectFrom()
        manage.selectTo()
        manage.clcickSearch()
+       cy.wait(2000)
+       manage.clickscrollBar()
+       manage.clickviewFile()
        
     })
 })
