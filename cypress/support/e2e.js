@@ -18,8 +18,6 @@ import './commands'
 require('cypress-xpath')
 import 'cypress-mochawesome-reporter/register'
 import 'cypress-file-upload';
-<<<<<<< HEAD
-require('../utils/readExcel');
-=======
-require('xlsx');
->>>>>>> 800eb4649533d7297c3ab327e6bc6466cd3c6d75
+//require('../utils/readExcel'); // Choose this if you want to use readExcel
+// OR
+require('xlsx'); // Choose this if you want to use xlsx
