@@ -10,7 +10,7 @@ class RaiseDocument{
     form=":nth-child(3) > .col-md-5 > .dx-field > .dx-field-value > .dx-show-invalid-badge > .dx-dropdowneditor-input-wrapper > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
     submitButton=".col-md-5 > .MuiButtonBase-root"
     iFrame=".formFillerInner"
-    ButtonSpan=".button-inner"
+    searchIcon=".button-inner" // This element is in shadowDOM
 
 
 
@@ -51,15 +51,17 @@ class RaiseDocument{
     clicksubmitButton(){
         cy.get(this.submitButton).click()
     }
+   
      getiFrame() {
-    return cy
-      .get(this.iFrame)
+     cy.get(this.iFrame).click()
       .its('0.contentDocument.body')
       .should('not.be.empty')
       .then((body) => cy.wrap(body));
   }
   clickButtonSpan() {
-    this.getiFrame().find(this.ButtonSpan).click();
+    //this.getiFrame().then((body) => {
+      cy.get(this.searchIcon).click('bottomRight');
+   // });
   }
 }
 

@@ -18,6 +18,7 @@ describe('Raise Document', () => {
         document.selectform()
         document.clicksubmitButton()
         cy.wait(10000)
+        document.getiFrame()
         document.clickButtonSpan()
         })
     })

@@ -72,40 +72,38 @@ class AssettypesTable{
         cy.get(':nth-child(6) > .dx-item-content').click()
     }
    getPasteArea() {
-         return cy.get(this.ExcelData).should('be.visible')
+  return cy.get(this.ExcelData).should('be.visible');
+ }
+
+ pasteExcelData(excelData) {
+  const limitedData = excelData.slice(0, 10);
+  const pastedData = limitedData
+    .map(row => {
+      if (typeof row === 'object' && row !== null) {
+        const values = Object.values(row);
+        return values.join('   '); // Join with commas for CSV
       }
-    
-    pasteExcelData(excelData) {
-        // Limit the data to the first 10 rows
-        const limitedData = excelData.slice(0, 10);
+      return String(row);
+    })
+    .join('\n','\td')
+    //.join('\t')
+    .trimEnd();
 
-        const pastedData = limitedData
-            .map(row => {
-                if (typeof row === 'object' && row !== null) {
-                    const values = Object.values(row);
-                    return values.join('\t'); // Join all values with tabs
-        }
-                return String(row); 
-        })
-            .join('\n') 
-            .trimEnd();
-
-        this.getPasteArea().then(el => {
-            if (el[0].tagName === 'INPUT' || el[0].tagName === 'TEXTAREA') {
-                el[0].value = pastedData; // Set the value for input/textarea
-         } else if (el[0].hasAttribute('contenteditable')) {
-                el[0].innerText = pastedData; // Set the inner text for contenteditable elements
-         } else {
-                throw new Error('Target element is not editable');
-         }
-
-            // Trigger input and change events to simulate user interaction
-            el[0].dispatchEvent(new Event('input', { bubbles: true }));
-            el[0].dispatchEvent(new Event('change', { bubbles: true }));
-        });
-
-        return this;
+  this.getPasteArea().then(el => {
+    const target = el[0];
+    if (!target) throw new Error('No target element found');
+    const tagName = target.tagName.toUpperCase();
+    if (tagName === 'INPUT' || tagName === 'TEXTAREA') {
+      target.value = pastedData;
+    } else if (target.hasAttribute('contenteditable')) {
+      target.innerText = pastedData;
+    } else {
+      throw new Error('Target element is not editable');
     }
+    cy.wrap(target).trigger('input').trigger('change');
+  });
+  return this;
+}
 
 }
 export default AssettypesTable;
