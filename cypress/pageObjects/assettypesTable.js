@@ -79,8 +79,13 @@ class AssettypesTable{
     .map(row => {
       if (typeof row === 'object' && row !== null) {
         const values = Object.values(row);
+<<<<<<< HEAD
         return values.join('                '); 
     }
+=======
+        return values.join('   '); 
+      }
+>>>>>>> 9156ac373a8a38221012134861764dc971aada52
       return String(row);
     })
     .join('\n','\td')

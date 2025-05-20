@@ -4,6 +4,7 @@ class AssetsRegistration {
     username="[name='Subject']"
     password="[name='Password']"
     loginButton="#loginButton"
+    url="https://www.datascopesystem.com/Assets_Staging/Frontend/registerAsset"
     burgerMenu=".css-zvtom2"
     navBar="#side-nav_button_asset-registration"
     AssetsRegistrationURL="https://www.datascopesystem.com/Assets_Staging/Frontend/registerAsset"
@@ -17,7 +18,7 @@ class AssetsRegistration {
     hiredStatus="#asset-registration_dd_hiredpurchase_status > .dx-field-value > .dx-show-invalid-badge > .dx-dropdowneditor-input-wrapper > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
     condition="#asset-registration_dd_condition > .dx-field-value > .dx-show-invalid-badge > .dx-dropdowneditor-input-wrapper > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
     availability="#asset-registration_dd_availability > .dx-field-value > .dx-show-invalid-badge > .dx-dropdowneditor-input-wrapper > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
-   url= "#asset-registration_dffi_url > .dx-field-value > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
+   urlField="#asset-registration_dffi_url > .dx-field-value > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
    customField1="#asset-registration_dffi2_custom-field-0 > :nth-child(2) > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
    customField2="#asset-registration_dffi2_custom-field-1 > :nth-child(2) > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
    inspectionSchedule="#asset-registration_dd_inspection-schedule > .dx-field-value > .dx-show-invalid-badge > .dx-dropdowneditor-input-wrapper > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
@@ -33,8 +34,8 @@ class AssetsRegistration {
     
 
 
-    openwebsite(url){
-        cy.visit(url)
+    openurl(){
+        cy.visit(this.url)
         
     }
     enterUsername(username){
@@ -103,8 +104,8 @@ class AssetsRegistration {
         cy.get(this.availability).type('Available')
         cy.get('.dx-item-content').contains('Available').click()
     }
-    enterurl(){
-        cy.get(this.url).type('www.google.com')
+    enterurlField(){
+        cy.get(this.urlField).type('www.google.com')
         cy.wait(2000)
         
     }
