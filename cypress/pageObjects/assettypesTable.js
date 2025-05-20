@@ -7,13 +7,13 @@ class AssettypesTable{
     manageAssetsURL="https://www.datascopesystem.com/Assets_Staging/Frontend/manageAssets"
     assettypeRadio="#manage-assets-table_rb_asset-types > .MuiButtonBase-root > .PrivateSwitchBase-input"
     addAssettype=":nth-child(1) > .dx-item-content > .dx-widget > .dx-button-content"
-    activeCheckbox=".dx-row-inserted > [aria-describedby='dx-col-12'] > .dx-widget > .dx-checkbox-container > .dx-checkbox-icon"
+    //activeCheckbox=".dx-row-inserted > [aria-describedby='dx-col-12'] > .dx-widget > .dx-checkbox-container > .dx-checkbox-icon"
     assetGroup="#manage-assets-table_dt_asset-type > div > div.dx-datagrid-rowsview.dx-last-row-border > div > table > tbody > tr.dx-row.dx-data-row.dx-row-lines.dx-column-lines.dx-row-inserted > td.dx-datagrid-validator.dx-validator.dx-visibility-change-handler.dx-datagrid-invalid"
     searchByID="[aria-colindex='1'] > .dx-editor-with-menu > .dx-editor-container > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
     searchByName="[aria-colindex='2'] > .dx-editor-with-menu > .dx-editor-container > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
     importAssets="a[title='Import Assets']"
     company=":nth-child(2) > .dx-field-value > .dx-show-invalid-badge > .dx-dropdowneditor-input-wrapper > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
-   ExcelData=".sc-jTrPJq"
+    ExcelData=".sc-jTrPJq"
     
 
     openUrl(){
@@ -43,7 +43,6 @@ class AssettypesTable{
         cy.wait(1000)
     }
     clickactiveCheckbox(){
-        //cy.get(this.activeCheckbox).click({ force: true });
         cy.get('tr').eq(2).find('span[class="dx-checkbox-icon"]').eq(1).click()
          cy.get('body').click(0, 0);
      }
@@ -63,33 +62,31 @@ class AssettypesTable{
     }
     clickimportAssets(){
         cy.get(this.importAssets).should('be.visible').click()
-       // cy.get('a[title="Import Assets"]').should('be.visible').click();
-        //cy.contains('title', 'Import Assets').should('be.visible').click();
 
     }
     getcompany(){
         cy.get(this.company).click()
         cy.get(':nth-child(6) > .dx-item-content').click()
     }
-   getPasteArea() {
-  return cy.get(this.ExcelData).should('be.visible');
- }
+    getPasteArea() {
+    return cy.get(this.ExcelData).should('be.visible');
+   }
 
- pasteExcelData(excelData) {
-  const limitedData = excelData.slice(0, 10);
-  const pastedData = limitedData
+
+   pasteExcelData(excelData) {
+   const limitedData = excelData.slice(0, 10);
+   const pastedData = limitedData
     .map(row => {
       if (typeof row === 'object' && row !== null) {
         const values = Object.values(row);
-        return values.join('   '); // Join with commas for CSV
-      }
+        return values.join('                '); 
+    }
       return String(row);
     })
     .join('\n','\td')
-    //.join('\t')
     .trimEnd();
 
-  this.getPasteArea().then(el => {
+    this.getPasteArea().then(el => {
     const target = el[0];
     if (!target) throw new Error('No target element found');
     const tagName = target.tagName.toUpperCase();
@@ -101,9 +98,21 @@ class AssettypesTable{
       throw new Error('Target element is not editable');
     }
     cy.wrap(target).trigger('input').trigger('change');
-  });
-  return this;
-}
+   });
+   return this;
 
-}
+
+
+  }
+  }
+
+
+
+
+
+
+
+
+
+
 export default AssettypesTable;
