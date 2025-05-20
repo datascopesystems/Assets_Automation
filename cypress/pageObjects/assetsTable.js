@@ -10,8 +10,8 @@ class AssetsTable{
     company=".dx-row-inserted > [aria-describedby='dx-col-4'"
     assetGroup=".dx-row-inserted > [aria-describedby='dx-col-3']"
     ID="[aria-colindex='1'] > .dx-editor-with-menu > .dx-editor-container > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
-    openAsset="#manage-assets-table_s_show-master-detail-133510 > :nth-child(2)"
-    Arrow="#manage-assets-table_s_show-master-detail-133510 > .svg-inline--fa > path"
+    openAsset="#manage-assets-table_s_show-master-detail-133511 > :nth-child(2)"
+    Arrow="#manage-assets-table_s_show-master-detail-133511 > .svg-inline--fa > path"
     notes="#asset-details_dta_asset-notes > .dx-field-value > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
     purchaseValue="#asset-details_dffi_purchase-value > .dx-field-value > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
     saveDetails="#asset-details_db_save"
@@ -95,7 +95,7 @@ class AssetsTable{
     
     }
     enterID(){
-        cy.get(this.ID).type('133510')
+        cy.get(this.ID).type('133511')
     }
     selectopenAsset(){
         cy.get(this.openAsset).click()
@@ -176,8 +176,8 @@ class AssetsTable{
         cy.get(this.teams).click()
     }
     clickavailableTeams(){
-        cy.get(this.avilableTeams).click()
-        cy.get('.dx-scrollview-content > :nth-child(1) > .dx-item-content').click()
+        cy.get(this.avilableTeams).type('all assets')
+        cy.get('.dx-scrollview-content > :nth-child(1) > .dx-item-content').click({force:true})
     }
     clicksiteDocuments(){
         cy.get(this.siteDocuments).click()

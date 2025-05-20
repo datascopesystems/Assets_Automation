@@ -81,7 +81,7 @@ class AssettypesTable{
     .map(row => {
       if (typeof row === 'object' && row !== null) {
         const values = Object.values(row);
-        return values.join('   '); // Join with commas for CSV
+        return values.join('   '); 
       }
       return String(row);
     })
