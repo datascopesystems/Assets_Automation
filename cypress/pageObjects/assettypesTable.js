@@ -71,27 +71,21 @@ class AssettypesTable{
     getPasteArea() {
     return cy.get(this.ExcelData).should('be.visible');
    }
-
-
-   pasteExcelData(excelData) {
-   const limitedData = excelData.slice(0, 10);
-   const pastedData = limitedData
+    pasteExcelData(excelData) {
+    const limitedData = excelData.slice(0, 10);
+    const pastedData = limitedData
     .map(row => {
       if (typeof row === 'object' && row !== null) {
         const values = Object.values(row);
-<<<<<<< HEAD
-        return values.join('                '); 
-    }
-=======
-        return values.join('   '); 
+        return values.join('   '); // Join with commas for CSV
       }
->>>>>>> 9156ac373a8a38221012134861764dc971aada52
       return String(row);
     })
     .join('\n','\td')
+    //.join('\t')
     .trimEnd();
 
-    this.getPasteArea().then(el => {
+  this.getPasteArea().then(el => {
     const target = el[0];
     if (!target) throw new Error('No target element found');
     const tagName = target.tagName.toUpperCase();
@@ -103,8 +97,8 @@ class AssettypesTable{
       throw new Error('Target element is not editable');
     }
     cy.wrap(target).trigger('input').trigger('change');
-   });
-   return this;
+  });
+  return this;
 
 
 
