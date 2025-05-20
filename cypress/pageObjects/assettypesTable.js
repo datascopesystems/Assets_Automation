@@ -77,12 +77,11 @@ class AssettypesTable{
     .map(row => {
       if (typeof row === 'object' && row !== null) {
         const values = Object.values(row);
-        return values.join('   '); // Join with commas for CSV
+        return values.join(','); // Join with commas for CSV
       }
       return String(row);
     })
     .join('\n','\td')
-    //.join('\t')
     .trimEnd();
 
   this.getPasteArea().then(el => {
@@ -97,6 +96,7 @@ class AssettypesTable{
       throw new Error('Target element is not editable');
     }
     cy.wrap(target).trigger('input').trigger('change');
+   // cy.get(target) .type('{ctrl}v', { force: true });
   });
   return this;
 
