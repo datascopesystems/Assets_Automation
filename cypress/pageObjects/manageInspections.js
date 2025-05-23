@@ -15,13 +15,8 @@ class ManageInspections{
 
 
      openUrl(){
-        cy.visit(this.Url)
-         }
-         clickburgerMenu(){
+            cy.visit(this.Url)
             cy.get(this.burgerMenu).click()
-         }
-        
-        clicksideNavbar(){
             cy.get(this.sideNavbar).click()
         }
         selectAsset(){

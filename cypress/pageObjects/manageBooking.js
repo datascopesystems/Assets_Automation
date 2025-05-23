@@ -1,8 +1,5 @@
 class ManageBooking {
     url="https://www.datascopesystem.com/Assets_Staging/Frontend"
-    username="[name='Subject']"
-    password="[name='Password']"
-    loginButton="#loginButton"
     burgerMenu=".css-zvtom2"
     navBar="#side-nav_button_manage-booking"
     ManageBookingURL="https://www.datascopesystem.com/Assets/Frontend/manageBookings"
@@ -11,20 +8,7 @@ class ManageBooking {
     Report=":nth-child(1) > .dx-item-content > .dx-widget > .dx-button-content"
     openUrl(){
         cy.visit(this.url)
-      }
-       enterUsername(username){
-        cy.get(this.username).type(username)
-       }
-       enterPassword(password){
-        cy.get(this.password).type(password)
-       }
-       clickLoginButton(){
-        cy.get(this.loginButton).click()
-       }
-       clickBurgerMenu(){
         cy.get(this.burgerMenu).click()
-       }
-       clickNavBar(){
         cy.get(this.navBar).click()
         }
         validateManageBooking(){
@@ -41,5 +25,7 @@ class ManageBooking {
         generateReport(){
             cy.get(this.Report).click()
         }
-}
+       }
+    
+
 export default ManageBooking

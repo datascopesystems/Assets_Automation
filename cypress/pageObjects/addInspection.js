@@ -14,48 +14,27 @@ class AddInspection{
 
 
      openURL(){
-    cy.visit(this.URL)
-     }
-     clickburgerMenu(){
+        cy.visit(this.URL)
         cy.get(this.burgerMenu).click()
-     }
-    
-    clicksideNavbar(){
         cy.get(this.sideNavbar).click()
     }
 
-    selectAsset(){
+    AddInspection(){
         cy.get(this.Asset).click()
         cy.contains('Loki Asset').click();
-        
-    }
-    chooseinspectionDate(){
         cy.xpath(this.inspectionDate).invoke('val', '04/05/2025 06:18').trigger('change')
-    }
-    enterinspectorName(){
         cy.xpath(this.inspectorName).type('Loki QA')
-    }
-    selectverdict(){
         cy.xpath(this.verdict).click()
-        
-    cy.contains('Pass').should('be.visible').click();
-    }
-    selectfile() {
+        cy.contains('Pass').should('be.visible').click();
         cy.get(this.file).selectFile('cypress/fixtures/Test 3.jpg', { action: 'drag-drop' });
-        
-
-    }
-    enternotes(){
         cy.get(this.notes).type('Loki Add Inspection QA Automation Note')
-    }
-    clicksubmit(){
         cy.get(this.submit).click()
     }
     assetsvalidateSubmitted(){
         cy.xpath("//h2[contains(text(), 'INSPECTION SUBMITTED')]").should('be.visible').and('contain.text', 'INSPECTION SUBMITTED');
 
-}
-clickclose(){
+  }
+  clickclose(){
     cy.get(this.close).click()
 }
 }

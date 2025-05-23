@@ -2,27 +2,24 @@ import RequestBooking from "../../pageObjects/requestBooking";
 
 
 describe('Request Booking', () => {
+     Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
     it('should visit the Request Booking page', () => {
-        cy.fixture('loginDetails').then(function(data){
+    
             const requestBooking = new RequestBooking()
             requestBooking.openUrl()
-            requestBooking.enterUsername(data.userName)
-            requestBooking.enterPassword(data.password)
-            requestBooking.clickLoginButton()
-            requestBooking.clickBurgerMenu()
-            requestBooking.clickNavBar()
-            requestBooking.validateRequestBooking()
+            cy.wait(2000)
             requestBooking.selectAsset()
             requestBooking.selectPreferredDate()
             requestBooking.enterDuration()
-            requestBooking.enterContactName()
-            requestBooking.enterContactNumber()
-            requestBooking.enterEmail()
+            requestBooking.enterContactInformation()
             requestBooking.enterNotes()
-            requestBooking.selectCompanyName()
+            requestBooking.clicksubmit()
+            requestBooking.assetsvalidateBooking()
+            requestBooking.clickclose()
 
 
         })
         
     })
-})

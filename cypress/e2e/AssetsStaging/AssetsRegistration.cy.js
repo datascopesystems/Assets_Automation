@@ -8,43 +8,17 @@ describe('Assets Regisration', () => {
         return false;
     });
     it('should visit the Assets Registration page', () => {
-        const env=Cypress.env("env")
-        //cy.Login()
-        //cy.fixture('loginDetails').then(function(data){
         const assets = new AssetsRegistration()
-        //assets.openwebsite(`https://www.datascopesystem.com/${env}/Frontend/registerAsset`)
         assets.openurl()
-        assets.clickBurgerMenu()
-        assets.clickNavBar()
-        //assets.validateAssetsRegistration()
-       // assets.selectassetGroup()
-        assets.enterReg()
-        assets.enterLocation()
-        assets.enterManufacturer()
-        assets.selectAssetsType()
-        cy.wait(5000)
-        assets.selectcompanyname()
-        assets.selectacquiredDate()
-        assets.selectavailability()
-        assets.selecthiredStatus()
-        assets.selectcondition()
-        assets.enterurlField()
-        assets.entercustomField1()
-        assets.entercustomField2()
+        assets.FillAssetDetails()
         assets.chooseinspectionSchedule()
-        assets.chooseinspectionDate()
         assets.selectAssetFileUpload()
-        assets.selectadditionalFile1()
-        assets.selectadditionalFile2()
-        assets.selectadditionalFile3()
+        assets.selectadditionalFiles()
         assets.clicksubmit()
         cy.wait(5000)
         assets.assetsvalidatePending()
 
         
     })
-})
+    })
 
-
-//test new code
-//test pull 

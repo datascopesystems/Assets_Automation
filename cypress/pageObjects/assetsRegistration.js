@@ -1,9 +1,5 @@
 class AssetsRegistration {
 
-    
-    username="[name='Subject']"
-    password="[name='Password']"
-    loginButton="#loginButton"
     url="https://www.datascopesystem.com/Assets_Staging/Frontend/registerAsset"
     burgerMenu=".css-zvtom2"
     navBar="#side-nav_button_asset-registration"
@@ -36,114 +32,56 @@ class AssetsRegistration {
 
     openurl(){
         cy.visit(this.url)
-        
-    }
-    enterUsername(username){
-        cy.get(this.username).type(username)
-   }  
-
-    enterPassword(password){
-        cy.get(this.password).type(password)
-    }           
-    
-    clickLoginButton(){
-        cy.get(this.loginButton).click()
-    }  
-
-    clickBurgerMenu(){
         cy.get(this.burgerMenu).click()
-    }
-
-    clickNavBar(){
         cy.get(this.navBar).click()
     }
     
-    validateAssetsRegistration(){
-            cy.url().should('eq', this.AssetsRegistrationURL)
-    }
-    selectassetGroup(){
+    FillAssetDetails(){
         cy.get(this.assetGroup).type('Drive Meadow ')
         cy.get(':nth-child(8) > .dx-item-content').click()
-        cy.wait(5000)
-    }
-
-    enterReg(){
-            cy.get(this.Reg).click().type('LokiKM67CF')
-    }
-    enterLocation(){
-            cy.get(this.Location).click().type('Chennai')
-    }
-    enterManufacturer(){
-            cy.get(this.Manufacturer).click().type('Nissan')
-    }
-
-    selectAssetsType(){
+        cy.wait(2000)
+        cy.get(this.Reg).click().type('LokiKM67CF')
+        cy.get(this.Location).click().type('Chennai')
+        cy.get(this.Manufacturer).click().type('Nissan')
         cy.get(this.assetsType) .type('Loki Asset')
-        cy.get(':nth-child(10) > .dx-item-content').click()
-    
-}
-    selectcompanyname(){
+        cy.contains('.dx-item-content','Loki Asset').click()
         cy.get(this.companyName).type('DATASCOPE')
-        //cy.contains('div', 'DATASCOPE').should('be.visible').click({ force: true });
         cy.get(':nth-child(64) > .dx-item-content').click()
-        cy.wait(5000)
-               
-    }
-    selectacquiredDate(){
+        cy.wait(2000)
         cy.get(this.acquiredDate).invoke('val', '30/04/2025').trigger('change')
-    }
-    selecthiredStatus(){
         cy.get(this.hiredStatus).type('Hired')
         cy.get('.dx-item-content').contains('Hired').click()
-    }
-    selectcondition(){
         cy.get(this.condition).type('Good')
         cy.get('.dx-item-content').contains('Good').click()
-    }
-    selectavailability(){
         cy.get(this.availability).type('Available')
         cy.get('.dx-item-content').contains('Available').click()
-    }
-    enterurlField(){
         cy.get(this.urlField).type('www.google.com')
         cy.wait(2000)
-        
-    }
-    entercustomField1(){
         cy.get(this.customField1).type('Custom Field One')
-    }
-    entercustomField2(){
         cy.get(this.customField2).type('Custom Field Two')
     }
     chooseinspectionSchedule(){
         cy.get(this.inspectionSchedule).type('Monthly')
         cy.get('.dx-item-content').contains('Monthly').click()
-    }
-    chooseinspectionDate(){
-        cy.get(this.inspectionDate).invoke('val', '30/04/2025').trigger('change')
+        cy.get(this.inspectionDate).invoke('val', '20/05/2025').trigger('change')
     }
     
     selectAssetFileUpload() {
         cy.get(this.assetfileUpload).within(() => {
-            cy.get('.dx-fileuploader-input-wrapper > .dx-widget').selectFile('cypress/fixtures/Test 3.jpg', { action: 'drag-drop' });
+        cy.get('.dx-fileuploader-input-wrapper > .dx-widget').selectFile('cypress/fixtures/Test 3.jpg', { action: 'drag-drop' });
         })
 
     }
-    selectadditionalFile1() {
+    selectadditionalFiles() {
         cy.get(this.additionalFile1).within(() => {
-            cy.get('.dx-fileuploader-input-wrapper > .dx-widget').selectFile('cypress/fixtures/Test 3.jpg', { action: 'drag-drop' });
+        cy.get('.dx-fileuploader-input-wrapper > .dx-widget').selectFile('cypress/fixtures/Test 3.jpg', { action: 'drag-drop' });
         })
-
-    }
-    selectadditionalFile2() {
+    
         cy.get(this.additionalFile2).within(() => {
-            cy.get('.dx-fileuploader-input-wrapper > .dx-widget').selectFile('cypress/fixtures/TEST.docx', { action: 'drag-drop' });
+        cy.get('.dx-fileuploader-input-wrapper > .dx-widget').selectFile('cypress/fixtures/TEST.docx', { action: 'drag-drop' });
         })
-
-    }
-    selectadditionalFile3() {
         cy.get(this.additionalFile3).within(() => {
-            cy.get('.dx-fileuploader-input-wrapper > .dx-widget').selectFile('cypress/fixtures/test.pdf', { action: 'drag-drop' });
+        cy.get('.dx-fileuploader-input-wrapper > .dx-widget').selectFile('cypress/fixtures/test.pdf', { action: 'drag-drop' })
         })
 
     }
@@ -157,20 +95,10 @@ class AssetsRegistration {
     assetsvalidatePending(){
         cy.xpath("//h2[contains(text(), 'ASSET PENDING REVIEW')]").should('be.visible').and('contain.text', 'ASSET PENDING REVIEW');
 
-       
+    } 
     }
 
-    
-    
-    
 
 
-
-    }
     
-    
-    
-
-
-
-export default AssetsRegistration
+    export default AssetsRegistration
