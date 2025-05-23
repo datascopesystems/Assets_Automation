@@ -20,7 +20,7 @@ describe('Assets Table', () => {
 
         // Uncomment and use cy.task to fetch excelData
         cy.task('readExcel', {
-            filePath: 'C:/Users/lokesh.p/Desktop/Assets_Automation/Assets_Automation/cypress/fixtures/Import Assets.xlsx',
+            filePath: 'cypress/fixtures/Import Assets.xlsx',
             sheetName: 'Sheet1',
         }).then((excelData) => {
             assettypesTable.pasteExcelData(excelData);
