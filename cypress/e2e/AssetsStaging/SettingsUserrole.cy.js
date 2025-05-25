@@ -7,12 +7,8 @@ describe('Settings Userrole', () => {
         return false;
     });
     it('should visit the Raise Document page', () => {
-        //cy.Login()
         const user = new SettingsUserrole()
         user.openUrl()
-        //user.enterUsername()
-        //user.enterPassword()
-       // user.clickLogin()
        user.clicksettings()
        user.clickdropdown()
        user.clickuserRole()

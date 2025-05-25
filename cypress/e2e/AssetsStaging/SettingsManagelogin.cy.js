@@ -7,12 +7,8 @@ describe('Settings Managelogin', () => {
         return false;
     });
     it('should visit Managelogin', () => {
-        //cy.Login()
         const userLogin = new SettingsManagelogin()
         userLogin.openUrl()
-        //user.enterUsername()
-        //user.enterPassword()
-       // user.clickLogin()
        userLogin.clicksettings()
        userLogin.clickdropdown()
        userLogin.clickmanageLogin()

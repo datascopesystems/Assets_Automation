@@ -8,12 +8,8 @@ describe('Settings Managelogin', () => {
         return false;
     });
     it('should visit Managelogin', () => {
-        //cy.Login()
         const userEmail = new SettingsManageEmail()
         userEmail.openUrl()
-        //userEmail.enterUsername()
-        //userEmail.enterPassword()
-        //userEmail.clickLoginButton()
         userEmail.clicksettings()
         userEmail.clickdropdown()
         userEmail.clickmanageEmail()
