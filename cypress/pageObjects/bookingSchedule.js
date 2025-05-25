@@ -1,8 +1,5 @@
 class BookingSchedule{
     url="https://www.datascopesystem.com/Assets_Staging/Frontend"
-    username="[name='Subject']"
-    password="[name='Password']"
-    loginButton="#loginButton"
     burgerMenu=".css-zvtom2"
     navBar="#side-nav_button_booking-schedule"
     BookingScheduleURL="https://www.datascopesystem.com/Assets_Staging/Frontend/bookingSchedule"
@@ -28,15 +25,6 @@ class BookingSchedule{
     openUrl(){
     cy.visit(this.url)
   }
-  enterUsername(username){
-  cy.get(this.username).type(username)
-  }
-  enterPassword(password){
-  cy.get(this.password).type(password)
-  }
-  clickLoginButton(){
-  cy.get(this.loginButton).click()
-  }
   clickBurgerMenu(){
   cy.get(this.burgerMenu).click()
   }
@@ -52,65 +40,26 @@ class BookingSchedule{
   }
   clickAddBooking(){
     cy.get(this.AddBooking).click()
-  }
-  selectbookableAsset(){
-    cy.get(this.bookableAsset).type('Demo Asset')
-    cy.get(':nth-child(30) > .dx-item-content').click()
+    cy.get(this.bookableAsset).type('LokiKM67CF')
+    cy.contains('.dx-item-content','LokiKM67CF').click({force:true})
     cy.wait(2000)
-  }
-  setbookingDate(){
-    // function getCurrentDateTime() {
-    //         const now = new Date();
-            
-    //         let day = now.getDate();
-    //         let month = now.getMonth() + 1; // Months are zero-based
-    //         const year = now.getFullYear();
-            
-    //         let hours = now.getHours();
-    //         const minutes = now.getMinutes();
-    //         const ampm = hours >= 24 ? 'PM' : 'AM';
-            
-    //         hours = hours % 24;
-    //         hours = hours ? hours : 24; // the hour '0' should be '12'
-            
-    //         // Pad day, month, and minutes with leading zeros if needed
-    //         day = day < 10 ? '0' + day : day;
-    //         month = month < 10 ? '0' + month : month;
-    //         const minutesStr = minutes < 10 ? '0' + minutes : minutes;
-            
-    //         const formattedDateTime = `${day}/${month}/${year} ${hours}:${minutesStr} ${ampm} `;
-    //         return formattedDateTime;
-    //         }
-            
-    //         cy.log(getCurrentDateTime());
-    cy.get(this.bookingDate).invoke('val', '02/05/2025 23:52').trigger('change')
+     cy.get(this.bookingDate).click();
+     cy.wait(1000) 
+        cy.get('.dx-toolbar-before > .dx-item > .dx-item-content > .dx-widget > .dx-button-content').contains('Today').click({ force: true });
+        cy.get('.dx-popup-done-visible .dx-button:contains("OK")').click();
+
     cy.wait(5000)
-  }
-  selectcompany(){
     cy.get(this.company).type('DATASCOPE')
     cy.get(':nth-child(64) > .dx-item-content').click()
-  }
-  enterduration(){
     cy.get(this.duration).click({ force: true });
     cy.wait(5000) 
     cy.contains('div', '00:30').should('be.visible').click({ force: true });
     cy.wait(2000)
-    
-  }
-  entercontactName(){
     cy.get(this.contactName).type('Sivan')
-  }
-  entercontactNo(){
     cy.get(this.contactNo).type('07555555555')
-  }
-  enteremail(){
     cy.get(this.email).type('loki@gmaill.com')
-  }
-  enternotes(){
     cy.get(this.notes).type('automation notes for Loki QA automation')
-  }
-  clicksubmit(){
-cy.get(this.submit).click()
+    cy.get(this.submit).click()
   }
 }
 

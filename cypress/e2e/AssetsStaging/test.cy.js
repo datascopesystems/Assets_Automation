@@ -137,3 +137,17 @@ it('step 10: should visit ManageUserRole', () => {
        user.clickcheckbox()
        
         })
+ it.only('step 11: should visit the Booking Schedule page', () => {
+        cy.fixture('loginDetails').then(function(){
+            const bookingSchedules = new pageObjects.BookingSchedule()
+            bookingSchedules.openUrl()
+            bookingSchedules.clickBurgerMenu()
+            bookingSchedules.clickNavBar()
+            bookingSchedules.clickaddIcon()
+            bookingSchedules.getmultiIcons()
+            cy.wait(1000)
+            bookingSchedules.clickAddBooking()
+            
+            
+        })
+        })
