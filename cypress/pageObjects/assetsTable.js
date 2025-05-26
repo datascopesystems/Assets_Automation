@@ -1,8 +1,5 @@
 class AssetsTable{
     url="https://www.datascopesystem.com/Assets_Staging/Frontend"
-    username="[name='Subject']"
-    password="[name='Password']"
-    loginButton="#loginButton"
     manageAssetsURL="https://www.datascopesystem.com/Assets_Staging/Frontend/manageAssets"
     addAsset=":nth-child(1) > .dx-item-content > .dx-widget > .dx-button-content"
     activeCheckbox=".dx-row-inserted > [aria-describedby='dx-col-18'] > .dx-widget > .dx-checkbox-container > .dx-checkbox-icon"
@@ -39,6 +36,8 @@ class AssetsTable{
     siteDocuments="#assets-master-details_t_site-documents"
     qrcode="#assets-master-details_t_qr-codes"
     qrGenerate="#asset-qr-code_db_save"
+    siteTransfer="#assets-master-details_t_site-transfer"
+    appStory="#assets-master-details_t_app-story"
     close=".css-1b172wj > .MuiButtonBase-root"
     exportExcel=":nth-child(3) > .dx-item-content > .dx-widget > .dx-button-content > .dx-icon"
 
@@ -49,133 +48,68 @@ class AssetsTable{
     openUrl(){
         cy.visit(this.url)
     }
-
-    enterUsername(username){
-        cy.get(this.username).type(username)
-   }  
-
-    enterPassword(password){
-        cy.get(this.password).type(password)
-    }           
-    
-    clickLoginButton(){
-        cy.get(this.loginButton).click()
-    }  
-    
-    validateAssetsTable(){
-        cy.url().should('eq', this.manageAssetsURL)
-    }
-    clickaddAsset(){
+    AddAsset(){
         cy.get(this.addAsset).click()
         cy.get('.dx-focused > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input').clear().type('QA Loki cypress Auto Asset')
         cy.wait(5000)
-       
-    }
-    clickactiveCheckbox(){
-       cy.get(this.activeCheckbox).click({ force: true });
+        cy.get('tr').eq(2).find('span[class="dx-checkbox-icon"]').eq(1).click()
+        //cy.get(this.activeCheckbox).click({ force: true });
         cy.get('body').click(0, 0);
-    }
-    enterlocation(){
         cy.get(this.location).type('Sivanadanoor')
         cy.get('body').click(0, 0);
-        
-    }
-    selectcompany(){
+        cy.wait(2000)
         cy.get(this.company).click() 
         cy.get(this.company).type('ACOMPANY');
         cy.contains('div.dx-item-content.dx-list-item-content', 'ACOMPANY').click() 
-    }
-    selectassetGroup(){
         cy.get(this.assetGroup).click()
         cy.get(this.assetGroup).type('AprilDemoGroup / April DemoType')
-        cy.contains('div.dx-item-content.dx-list-item-content', 'AprilDemoGroup / April DemoType')
-      .should('be.visible')
-      .click();
+        cy.contains('div.dx-item-content.dx-list-item-content', 'AprilDemoGroup / April DemoType').should('be.visible').click();
         cy.get('body').click(0, 0); 
-    
     }
-    enterID(){
+    enterAssetDetails(){
         cy.get(this.ID).type('133511')
-    }
-    selectopenAsset(){
         cy.get(this.openAsset).click()
-    }
-    clickArrow(){
         cy.get(this.Arrow).click()
-    }
-    enternotes(){
         cy.get(this.notes).type('This is a test note')
-    }
-    enterpurchaseValue(){
         cy.get(this.purchaseValue).clear().type('1000')
-    }
-    clicksaveDetails(){
         cy.get(this.saveDetails).click()
     }
-    selectassetFiles(){
+    addAssetFiles(){
         cy.get(this.assetFiles).click()
-    }
-    selectfileUpload(){
+        cy.wait(5000)
         cy.get(this.fileUpload).selectFile('cypress/fixtures/Test 3.jpg', { action: 'drag-drop' });
-        
-    }
-    clickfileSave(){
         cy.get(this.fileSave).click()
     }
-    clickimages(){
+    addAssetImages(){
         cy.get(this.images).click()
-    }
-    clickimageUpload(){
         cy.get(this.imageUpload).selectFile(['cypress/fixtures/Test 3.jpg','cypress/fixtures/Test 3.jpg','cypress/fixtures/Test 3.jpg'], { action:'drag-drop'})
     }
-    clickinspection(){
+    addAssetInspection(){
         cy.get(this.inspection).click()
-    }
-    selectinspectionSchedule(){
         cy.get(this.inspectionSchedule).click()
         cy.get(':nth-child(4) > .dx-item-content').click()
         //cy.contains('monthly').should('be.visible').click();
-    }
-    enterinspectionNotification(){
         cy.get(this.inspectionNotification).type('3')
-    }
-    enterinspectionDuration(){
         cy.get(this.inspectionDuration).type('30')
-    }
-    clicksaveInspection(){
         cy.get(this.saveInspection).click()
     }
-    clickoperatingTime(){
+    addOperatingTime(){
         cy.get(this.operatingTme).click()
-    }
-    clicksaveoperatingTime(){
         cy.get(this.saveoperatingTime).click()
     }
-    clickbookableDetails(){
+    addBookableDetails(){
         cy.get(this.bookableDetails).click()
-    }
-    enternoticePeriod(){
         cy.get(this.noticePeriod).type('1')
-    }
-    clickautoAccept(){
         cy.get(this.autoAccept).click()
-    }
-    clicksavebookableDetails(){
         cy.get(this.savebookableDetails).click()
     }
-    clickcustomField(){
+    addCustomField(){
         cy.get(this.customField).click()
-    }
-    enterfield1(){
         cy.get(this.field1).type('Test 1')
-    }
-    clicksaveCustomfield(){
         cy.get(this.saveCustomfield).click()
     }
     clickteams(){
         cy.get(this.teams).click()
-    }
-    clickavailableTeams(){
         cy.get(this.avilableTeams).type('all assets')
         cy.get('.dx-scrollview-content > :nth-child(1) > .dx-item-content').click({force:true})
     }
@@ -187,6 +121,12 @@ class AssetsTable{
     }
     clickqrGenerate(){
         cy.get(this.qrGenerate).click()
+    }
+    addSiteTransfer(){
+        cy.get(this.siteTransfer).click()
+    }
+    clickAppStory(){
+        cy.get(this.appStory).click()
     }
     clickclose(){
         cy.get(this.close).click()
