@@ -5,7 +5,23 @@ describe('Asset Test Suite ', () => {
     Cypress.on('uncaught:exception', (err, runnable) => {
         return false;
     });
-     it.only('should visit the Assets Table page', () => {
+    it.only('step 1: should visit the Manage Assets Group Table page', () => {
+        const assetGroup = new  pageObjects.AssetsGroupTable()
+        assetGroup.openUrl()
+        cy.wait(1000)
+        //assetGroup.clickAddAssetsGroup()
+        assetGroup.ManageAssetGroup()
+        // assetGroup.entertypeAssetgroup()
+        // assetGroup.selectactivegroupCheckbox()
+        // cy.wait(5000)
+        // assetGroup.selectradiobuttonAssets()
+        // assetGroup.clickaddAsset()
+        // assetGroup.clickactiveassetCheckbox()
+        // assetGroup.enterlocation()
+        // assetGroup.selectcompany()
+        // assetGroup.selectassetGroup()
+         })
+     it('step 2: should visit the Manage Assets Table page', () => {
         const assetsTables = new pageObjects.AssetsTable()
         assetsTables.openUrl()
         assetsTables.AddAsset()
@@ -29,63 +45,7 @@ describe('Asset Test Suite ', () => {
         // assetsTables.clickexportExcel()
 
     })
-
-    it('step 1: should visit the Add Inspection Page', () => {
-        const inspection = new pageObjects.AddInspection()
-        inspection.openURL()
-        inspection.AddInspection()
-        inspection.assetsvalidateSubmitted()
-        inspection.clickclose()
-    })
-
-    it('step 2: should visit the Manage Inspections Page', () => {
-        const manage = new pageObjects.ManageInspections()
-        manage.openUrl()
-        manage.selectAsset()
-        manage.selectFrom()
-        manage.selectTo()
-        manage.clcickSearch()
-        cy.wait(2000) 
-        manage.clickscrollBar()
-        manage.clickviewFile()
-    })
-
-    it('step 3: should visit the Assets Registration page', () => {
-        const assets = new pageObjects.AssetsRegistration()
-        assets.openurl()
-        assets.FillAssetDetails()
-        assets.chooseinspectionSchedule()
-        assets.selectAssetFileUpload()
-        assets.selectadditionalFiles()
-        assets.clicksubmit()
-        cy.wait(5000) 
-        assets.assetsvalidatePending()
-    })
-
-    it('step 4: should visit the Request Booking page', () => {
-        const requestBooking = new pageObjects.requestBooking()
-        requestBooking.openUrl()
-        cy.wait(2000) 
-        requestBooking.selectAsset()
-        requestBooking.selectPreferredDate()
-        requestBooking.enterDuration()
-        requestBooking.enterContactInformation()
-        requestBooking.enterNotes()
-        requestBooking.clicksubmit()
-        requestBooking.assetsvalidateBooking()
-        requestBooking.clickclose()
-    })
-
-it('step 5: should visit the Manage Booking page', () => {
-    
-            const manageBookings = new pageObjects. ManageBooking()
-            manageBookings.openUrl()
-            manageBookings.chooseTo()
-            manageBookings.clickSearch()
-            cy.wait(5000)
-            manageBookings.generateReport()
-        })
-it('step 6: should display asset types table', () => {
+    it('step 3: should display asset types table', () => {
         const assettypesTable = new pageObjects.AssettypesTable();
         assettypesTable.openUrl();
         assettypesTable.validateAssetsTable();
@@ -105,7 +65,63 @@ it('step 6: should display asset types table', () => {
             assettypesTable.pasteExcelData(excelData);
         });
         })
-    it('step 7: should visit the Raise Document page', () => {
+
+    it('step 4: should visit the Add Inspection Page', () => {
+        const inspection = new pageObjects.AddInspection()
+        inspection.openURL()
+        inspection.AddInspection()
+        inspection.assetsvalidateSubmitted()
+        inspection.clickclose()
+    })
+
+    it('step 5: should visit the Manage Inspections Page', () => {
+        const manage = new pageObjects.ManageInspections()
+        manage.openUrl()
+        manage.selectAsset()
+        manage.selectFrom()
+        manage.selectTo()
+        manage.clcickSearch()
+        cy.wait(2000) 
+        manage.clickscrollBar()
+        manage.clickviewFile()
+    })
+
+    it('step 6: should visit the Assets Registration page', () => {
+        const assets = new pageObjects.AssetsRegistration()
+        assets.openurl()
+        assets.FillAssetDetails()
+        assets.chooseinspectionSchedule()
+        assets.selectAssetFileUpload()
+        assets.selectadditionalFiles()
+        assets.clicksubmit()
+        cy.wait(5000) 
+        assets.assetsvalidatePending()
+    })
+
+    it('step 7: should visit the Request Booking page', () => {
+        const requestBooking = new pageObjects.requestBooking()
+        requestBooking.openUrl()
+        cy.wait(2000) 
+        requestBooking.selectAsset()
+        requestBooking.selectPreferredDate()
+        requestBooking.enterDuration()
+        requestBooking.enterContactInformation()
+        requestBooking.enterNotes()
+        requestBooking.clicksubmit()
+        requestBooking.assetsvalidateBooking()
+        requestBooking.clickclose()
+    })
+
+it('step 8: should visit the Manage Booking page', () => {
+    
+        const manageBookings = new pageObjects. ManageBooking()
+        manageBookings.openUrl()
+        manageBookings.chooseTo()
+        manageBookings.clickSearch()
+        cy.wait(5000)
+        manageBookings.generateReport()
+        })
+    it('step 9: should visit the Raise Document page', () => {
         const document = new pageObjects. RaiseDocument()
         document.openUrl()
         cy.wait(2000)
@@ -118,7 +134,7 @@ it('step 6: should display asset types table', () => {
         //document.clickButtonSpan()
         })
     })
-    it('step 8: should visit ManageEmail', () => {
+    it('step 10: should visit ManageEmail', () => {
         const userEmail = new pageObjects.SettingsManageEmail()
         userEmail.openUrl()
         userEmail.clicksettings()
@@ -130,47 +146,47 @@ it('step 6: should display asset types table', () => {
         userEmail.enteremail()
         userEmail.selectassetType()
     })
-     it('step 9: should visit Managelogin', () => {
+     it('step 11: should visit Managelogin', () => {
         const userLogin = new pageObjects.SettingsManagelogin()
         userLogin.openUrl()
-       userLogin.clicksettings()
-       userLogin.clickdropdown()
-       userLogin.clickmanageLogin()
-       userLogin.entersearchName()
-       cy.wait(5000)
-       userLogin.clickexpand()
-       userLogin.clickuserRole()
-       userLogin.clickadduserRole()
-       userLogin.clickSelectAddUserRole()
-       userLogin.clickassetTeam()
-       cy.wait(2000)
-       userLogin.clickaddassetTeam()
-      // userLogin.clickhomePage()
-       //userLogin.clickuserhomePage()
-       //userLogin.clicksethomePage()
-      // userLogin.clicksubmit()
+        userLogin.clicksettings()
+        userLogin.clickdropdown()
+        userLogin.clickmanageLogin()
+        userLogin.entersearchName()
+        cy.wait(5000)
+        userLogin.clickexpand()
+        userLogin.clickuserRole()
+        userLogin.clickadduserRole()
+        userLogin.clickSelectAddUserRole()
+        userLogin.clickassetTeam()
+        cy.wait(2000)
+        userLogin.clickaddassetTeam()
+        // userLogin.clickhomePage()
+        //userLogin.clickuserhomePage()
+        //userLogin.clicksethomePage()
+       // userLogin.clicksubmit()
     })
         
-it('step 10: should visit ManageUserRole', () => {
+it('step 12: should visit ManageUserRole', () => {
         const user = new pageObjects.SettingsUserrole()
         user.openUrl()
-       user.clicksettings()
-       user.clickdropdown()
-       user.clickuserRole()
-       user.clickadduserRole()
-       user.clickcheckbox()
+        user.clicksettings()
+        user.clickdropdown()
+        user.clickuserRole()
+        user.clickadduserRole()
+        user.clickcheckbox()
        
         })
- it('step 11: should visit the Booking Schedule page', () => {
+ it('step 13: should visit the Booking Schedule page', () => {
         cy.fixture('loginDetails').then(function(){
-            const bookingSchedules = new pageObjects.BookingSchedule()
-            bookingSchedules.openUrl()
-            bookingSchedules.clickBurgerMenu()
-            bookingSchedules.clickNavBar()
-            bookingSchedules.clickaddIcon()
-            bookingSchedules.getmultiIcons()
-            cy.wait(1000)
-            bookingSchedules.clickAddBooking()
+        const bookingSchedules = new pageObjects.BookingSchedule()
+        bookingSchedules.openUrl()
+        bookingSchedules.clickBurgerMenu()
+        bookingSchedules.clickNavBar()
+        bookingSchedules.clickaddIcon()
+        bookingSchedules.getmultiIcons()
+        cy.wait(1000)
+        bookingSchedules.clickAddBooking()
             
             
         })
