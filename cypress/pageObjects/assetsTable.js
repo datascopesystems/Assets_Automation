@@ -54,14 +54,14 @@ class AssetsTable{
     AddAsset(){
         cy.get(this.addAsset).click()
         cy.wait(1000)
-        const uniqueName = `QA Automationtest-${Date.now()}`; // or use Cypress._.random() for shorter IDs
+        const uniqueName = `QA Automation-${Date.now()}`; // or use Cypress._.random() for shorter IDs
         cy.get('tr[aria-rowindex="1"]').eq(0) .find('td').eq(1).type(uniqueName);
 
         //cy.get('tr[aria-rowindex="1"]').eq(0).find('td').eq(1).type('test')//for Specific name 
         cy.wait(1000);
         cy.get('tr').eq(2).find('span[class="dx-checkbox-icon"]').eq(1).click()
         cy.get('body').click(0, 0);
-        cy.get('tr[aria-rowindex="1"]').eq(0).find('td').eq(10).type('row test')
+        cy.get('tr[aria-rowindex="1"]').eq(0).find('td').eq(10).type('Sivanadanoor Loke')
 
  
        cy.wait(1000)

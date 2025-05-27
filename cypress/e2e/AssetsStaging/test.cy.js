@@ -5,6 +5,30 @@ describe('Asset Test Suite ', () => {
     Cypress.on('uncaught:exception', (err, runnable) => {
         return false;
     });
+     it.only('should visit the Assets Table page', () => {
+        const assetsTables = new pageObjects.AssetsTable()
+        assetsTables.openUrl()
+        assetsTables.AddAsset()
+        // assetsTables.enterAssetDetails()
+        // cy.wait(1000)
+        // assetsTables.addAssetFiles()
+        // assetsTables.addAssetImages()
+        // cy.wait(5000)
+        // assetsTables.addAssetInspection()
+        // assetsTables.addOperatingTime()
+        // assetsTables.addBookableDetails()
+        // assetsTables.addCustomField()
+        // assetsTables.clickteams()
+        // cy.wait(5000)
+        // assetsTables.clicksiteDocuments()
+        // assetsTables.clcikqrcode()
+        // assetsTables.clickqrGenerate()
+        // assetsTables.addSiteTransfer()
+        // assetsTables.clickAppStory()
+        // assetsTables.clickclose()
+        // assetsTables.clickexportExcel()
+
+    })
 
     it('step 1: should visit the Add Inspection Page', () => {
         const inspection = new pageObjects.AddInspection()
@@ -137,7 +161,7 @@ it('step 10: should visit ManageUserRole', () => {
        user.clickcheckbox()
        
         })
- it.only('step 11: should visit the Booking Schedule page', () => {
+ it('step 11: should visit the Booking Schedule page', () => {
         cy.fixture('loginDetails').then(function(){
             const bookingSchedules = new pageObjects.BookingSchedule()
             bookingSchedules.openUrl()
