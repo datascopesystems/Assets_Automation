@@ -1,39 +1,18 @@
-class ManageAssets{
+class AssetsGroupTable{
 
     url="https://www.datascopesystem.com/Assets_Staging/Frontend"
-    username="[name='Subject']"
-    password="[name='Password']"
-    loginButton="#loginButton"
     manageAssetsURL="https://www.datascopesystem.com/Assets_Staging/Frontend/manageAssets"
     AssetsGroup="#manage-assets-table_rb_asset-group"
     AddAssetsGroup=":nth-child(1) > .dx-item-content > .dx-widget > .dx-button-content"
     typeAssetgroup=".dx-datagrid-validator > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
     activegroupCheckbox=".dx-row-inserted > .dx-editor-inline-block > .dx-widget > .dx-checkbox-container > .dx-checkbox-icon"
-    radiobuttonAssets="#manage-assets-table_rb_assets > .MuiButtonBase-root > .PrivateSwitchBase-input"
-    addAsset=":nth-child(1) > .dx-item-content > .dx-widget > .dx-button-content"
-    activeassetCheckbox=".dx-row-inserted > [aria-describedby='dx-col-75'] > .dx-widget > .dx-checkbox-container > .dx-checkbox-icon"
-    location=".dx-row-inserted > [aria-describedby='dx-col-69']"
-    company=".dx-row-inserted > [aria-describedby='dx-col-62']"
-    assetGroup=".dx-row-inserted > [aria-describedby='dx-col-61']"
-
+    create=".MuiDialogActions-root > :nth-child(2)"
 
 
     openUrl(){
         cy.visit(this.url)
     }
 
-    enterUsername(username){
-        cy.get(this.username).type(username)
-   }  
-
-    enterPassword(password){
-        cy.get(this.password).type(password)
-    }           
-    
-    clickLoginButton(){
-        cy.get(this.loginButton).click()
-    }  
-    
     validateManageAssets(){
         cy.url().should('eq', this.manageAssetsURL)
     }
@@ -42,6 +21,17 @@ class ManageAssets{
     }
     clickAddAssetsGroup(){
         cy.get(this.AddAssetsGroup).click()
+         cy.wait(1000)
+        const uniqueName = `QA Automation-${Date.now()}`; // or use Cypress._.random() for shorter IDs
+        cy.get('tr[aria-rowindex="1"]').eq(0) .find('td').eq(1).type(uniqueName);
+
+        //cy.get('tr[aria-rowindex="1"]').eq(0).find('td').eq(1).type('test')//for Specific name 
+        cy.wait(1000);
+         cy.get('tr').eq(2).find('span[class="dx-checkbox-icon"]').eq(0).click()
+        cy.get('tr').eq(2).find('span[class="dx-checkbox-icon"]').eq(1).click()
+        cy.get('body').click(0, 0);
+        cy.wait(1000)
+        cy.get(this.create).click()
     }
     entertypeAssetgroup(){
         cy.get(this.typeAssetgroup).type('QA Loki Automation')
@@ -83,4 +73,4 @@ class ManageAssets{
 }
 }
 
-export default ManageAssets
+export default AssetsGroupTable

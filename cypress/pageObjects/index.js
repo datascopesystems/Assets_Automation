@@ -7,7 +7,7 @@ export {default as AssetsTable} from './assetsTable';
 export {default as AssettypesTable} from './assettypesTable';
 export {default as BookingSchedule} from './bookingSchedule';
 export {default as ManageBooking} from './manageBooking';
-export {default as ManageAssets} from './manageAssets';
+export {default as AssetsGroupTable} from './assetGroupTabls';
 export {default as RaiseDocument} from './raiseDocument';
 export {default as SettingsManageEmail} from './settingsManageEmail';
 export {default as SettingsManagelogin} from './settingsManagelogins';
