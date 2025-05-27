@@ -1,11 +1,14 @@
+// Import cypress-xpath to enable cy.xpath() usage
+require('cypress-xpath');
+
 class AssetsTable{
     url="https://www.datascopesystem.com/Assets_Staging/Frontend"
     manageAssetsURL="https://www.datascopesystem.com/Assets_Staging/Frontend/manageAssets"
     addAsset=":nth-child(1) > .dx-item-content > .dx-widget > .dx-button-content"
     activeCheckbox=".dx-row-inserted > [aria-describedby='dx-col-18'] > .dx-widget > .dx-checkbox-container > .dx-checkbox-icon"
-    location=".dx-row-inserted > [aria-describedby='dx-col-11']"
-    company=".dx-row-inserted > [aria-describedby='dx-col-4'"
-    assetGroup=".dx-row-inserted > [aria-describedby='dx-col-3']"
+    location="//*[@id='manage-assets-table_dt_asset']/div/div[6]/div/table/tbody/tr[1]/td[11]"
+    company="//*[@id='manage-assets-table_dt_asset']/div/div[6]/div/table/tbody/tr[1]/td[4]"
+    assetGroup="//*[@id='manage-assets-table_dt_asset']/div/div[6]/div/table/tbody/tr[1]/td[3]/div/div[1]/div/div[2]/div[2]/div/div"
     ID="[aria-colindex='1'] > .dx-editor-with-menu > .dx-editor-container > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
     openAsset="#manage-assets-table_s_show-master-detail-133511 > :nth-child(2)"
     Arrow="#manage-assets-table_s_show-master-detail-133511 > .svg-inline--fa > path"
@@ -50,21 +53,26 @@ class AssetsTable{
     }
     AddAsset(){
         cy.get(this.addAsset).click()
-        cy.get('.dx-focused > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input').clear().type('QA Loki cypress Auto Asset')
-        cy.wait(5000)
+        cy.wait(1000)
+        const uniqueName = `QA Automationtest-${Date.now()}`; // or use Cypress._.random() for shorter IDs
+        cy.get('tr[aria-rowindex="1"]').eq(0) .find('td').eq(1).type(uniqueName);
+
+        //cy.get('tr[aria-rowindex="1"]').eq(0).find('td').eq(1).type('test')//for Specific name 
+        cy.wait(1000);
         cy.get('tr').eq(2).find('span[class="dx-checkbox-icon"]').eq(1).click()
-        //cy.get(this.activeCheckbox).click({ force: true });
         cy.get('body').click(0, 0);
-        cy.get(this.location).type('Sivanadanoor')
-        cy.get('body').click(0, 0);
-        cy.wait(2000)
-        cy.get(this.company).click() 
-        cy.get(this.company).type('ACOMPANY');
-        cy.contains('div.dx-item-content.dx-list-item-content', 'ACOMPANY').click() 
-        cy.get(this.assetGroup).click()
-        cy.get(this.assetGroup).type('AprilDemoGroup / April DemoType')
-        cy.contains('div.dx-item-content.dx-list-item-content', 'AprilDemoGroup / April DemoType').should('be.visible').click();
+        cy.get('tr[aria-rowindex="1"]').eq(0).find('td').eq(10).type('row test')
+
+ 
+       cy.wait(1000)
+        //cy.get(this.company).click() 
+       // cy.xpath(this.company).type('ACOMPANY');
+        cy.get('tr[aria-rowindex="1"]').eq(0).find('td').eq(3).type('ACOMPANY')
+        cy.contains('div.dx-item-content.dx-list-item-content', 'ACOMPANY').should('be.visible').click({force:true}) 
+        cy.get('tr[aria-rowindex="1"]').eq(0).find('td').eq(2).type('AprilDemoGroup / April DemoType')
+        cy.contains('div.dx-item-content.dx-list-item-content', 'AprilDemoGroup / April DemoType').should('be.visible').click({force:true});
         cy.get('body').click(0, 0); 
+
     }
     enterAssetDetails(){
         cy.get(this.ID).type('133511')
