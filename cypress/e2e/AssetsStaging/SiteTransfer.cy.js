@@ -12,7 +12,7 @@ describe('Manage Assets Group Table ', () => {
         cy.wait(1000)
         //transfer.clickAddAssetsGroup()
         transfer.checktransfer()
-        transfer.searchAcrossPages("60118",[0,1,2,3])
+        transfer.searchAcrossPages("loki",[0,1,2])
 
     })
 })

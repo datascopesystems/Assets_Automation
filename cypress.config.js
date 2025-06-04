@@ -2,8 +2,9 @@ const { defineConfig } = require('cypress');
 const xlsx = require('xlsx');
 
 module.exports = defineConfig({
+  projectId: 'sucq2u',
   e2e: {
-    projectId: 'your-project-id',
+    projectId: 'sucq2u',
     video: true,
     screenshotOnRunFailure: true,
     reporter: "cypress-mochawesome-reporter",

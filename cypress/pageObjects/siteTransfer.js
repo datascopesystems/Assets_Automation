@@ -3,7 +3,7 @@ class SiteTransfer {
   manageAssetsURL = "https://www.datascopesystem.com/Assets_Staging/Frontend/manageAssets";
   AssetsGroup = "#manage-assets-table_rb_asset-group";
   AddAssetsGroup = ":nth-child(1) > .dx-item-content > .dx-widget > .dx-button-content";
-  typeAssetgroup = ".dx-datagrid-validator > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input";
+  typeAssetgroup = ".dx-datagrid-validator > .dx-show-invalid-badge > .dx-texteditor-container > .dx-texteditor-input";
   selectsite = ".MuiSelect-select";
   chooseSite = "[data-value='1']";
   site1assetGroups = "#manage-assets-table_rb_asset-group > .MuiButtonBase-root > .PrivateSwitchBase-input";
@@ -162,41 +162,34 @@ checktransfer() {
           if (pageNumber === 1) {
             // For the first page, we just ensure the pagination is visible and wait briefly.
             // Using .first() to explicitly scroll only one element.
-            return cy.get('.dx-page-indexes, .dx-pager', { timeout: 5000 }).first().scrollIntoView().wait(100);
+            return cy.get('.dx-page-indexes, .dx-page, .dx-separator', { timeout: 5000 })
+              .first().scrollIntoView().wait(100);
           }
 
           // Attempt to find the pagination container and scroll it into view.
           // Then, directly get the specific page number element within the scrolled view.
-          const pageNumberClickSelector = `.dx-page-indexes > div:contains("${pageNumber}")`;
+          const pageNumberClickSelector = `.dx-page-indexes *:contains("${pageNumber}")`;
 
-          return cy.get('.dx-page-indexes, .dx-pager', { timeout: 5000 }).first().scrollIntoView()
-            .then(() => { // Ensure scrollIntoView completes before trying to find the page number
-              // First, assert the element is ready to be clicked (not disabled, visible)
-              return cy.get(pageNumberClickSelector, { timeout: 10000 })
-                .should('not.have.class', 'dx-disabled')
+          return cy.get('.dx-page-indexes, .dx-page, .dx-separator', { timeout: 5000 })
+            .first().scrollIntoView()
+            .then(() => {
+              // Get the page number element, click, then re-query to ensure it's selected
+              cy.get(pageNumberClickSelector, { timeout: 10000 })
+                .should('exist')
                 .should('be.visible')
-                .then(() => {
-                  // Re-get the element immediately before clicking to ensure it's fresh and attached to the DOM.
-                  // This is crucial for preventing "detached DOM element" errors.
-                  cy.get(pageNumberClickSelector).click({ multiple: true });
-                })
-                .wait(500) // Small wait after click for page transition
-                .then(() => {
-                  // After clicking and waiting, re-get the element for the final assertion.
-                  // This ensures the assertion is on the *newly* active element.
-                  return cy.get(pageNumberClickSelector, { timeout: 10000 })
-                    .should('have.class', 'dx-selection') // Assert it has the active class
-                    .then(() => { // Log success after all assertions pass
-                      cy.log(`Page ${pageNumber} successfully navigated and asserted.`);
-                    });
-                });
+                .first() // Only click the first matching element
+                .click({ force: true }); // Use force in case of overlays
+
+              // Wait for the page to update, then confirm the page is selected
+              cy.get(pageNumberClickSelector, { timeout: 10000 })
+                .should('have.class', 'dx-selection');
             });
         };
 
         // Perform navigation, then search the table.
         navigateToPage().then(() => {
           // Add a wait here to allow content to fully load after navigation
-          cy.wait(2000); // Adjust this duration as needed for your application's loading times
+          cy.wait(1000); // Adjust this duration as needed for your application's loading times
 
           // Ensure the table content exists before searching.
           // We will get all rows and then filter by columns.
@@ -325,7 +318,6 @@ checktransfer() {
 //       checkPage(1); // Start on first page
 //     });
 //   }
-
 
 
 
