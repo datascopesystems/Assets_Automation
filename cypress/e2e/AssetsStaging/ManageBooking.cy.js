@@ -11,7 +11,8 @@ describe('Manage Booking', () => {
             manageBookings.chooseTo()
             manageBookings.clickSearch()
             cy.wait(5000)
-            manageBookings.generateReport()
+            manageBookings.clickreviewRequest()
+            //manageBookings.generateReport()
         })
     })
 
