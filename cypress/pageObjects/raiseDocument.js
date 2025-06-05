@@ -10,7 +10,7 @@ class RaiseDocument{
     form=":nth-child(3) > .col-md-5 > .dx-field > .dx-field-value > .dx-show-invalid-badge > .dx-dropdowneditor-input-wrapper > .dx-texteditor-container > .dx-texteditor-input-container > .dx-texteditor-input"
     submitButton=".col-md-5 > .MuiButtonBase-root"
     iFrame=".formFillerInner"
-    searchIcon=".button-inner" // This element is in shadowDOM
+    searchIcon="#ion-overlay-2 > div.alert-wrapper.ion-overlay-wrapper.sc-ion-alert-md > div.alert-button-group.sc-ion-alert-md > button" // This element is in shadowDOM
 
 
 
@@ -42,7 +42,7 @@ class RaiseDocument{
     }
     selectgroup(){
         cy.get(this.group).type('QA Site Demo')
-        cy.get(':nth-child(5) > .dx-item-content').click({force:true})
+        cy.contains('.dx-item-content','QA Site Demo').click({force:true})
     }
     selectform(){
         cy.get(this.form).type('Asset Test')
@@ -60,7 +60,7 @@ class RaiseDocument{
   }
   clickButtonSpan() {
     //this.getiFrame().then((body) => {
-      cy.get(this.searchIcon).click('bottomRight');
+      cy.get(this.searchIcon).click();
    // });
   }
 }

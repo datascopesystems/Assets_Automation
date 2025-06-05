@@ -25,6 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import AssetsRegistration from "../pageObjects/assetsRegistration";
 const assets = new AssetsRegistration()
+import 'cypress-iframe';
 beforeEach(() => {
     cy.session('user-session', () => {
         // Perform login only once and cache the session
