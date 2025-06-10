@@ -5,8 +5,8 @@ describe('AssetsGroupTable', () => {
         // Prevent Cypress from failing the test
         return false;
     });
-describe('Manage Assets Group Table ', () => {
-    it('should visit the Manage Assets Group Table page', () => {
+describe('checking site transfer', () => {
+    it('checking site transfer', () => {
         const transfer = new  SiteTransfer()
         transfer.openUrl()
         cy.wait(1000)

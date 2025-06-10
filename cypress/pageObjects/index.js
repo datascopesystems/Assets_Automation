@@ -12,3 +12,4 @@ export {default as RaiseDocument} from './raiseDocument';
 export {default as SettingsManageEmail} from './settingsManageEmail';
 export {default as SettingsManagelogin} from './settingsManagelogins';
 export {default as SettingsUserrole} from './settingsUserrole';
+export {default as SiteTransfer} from './siteTransfer';

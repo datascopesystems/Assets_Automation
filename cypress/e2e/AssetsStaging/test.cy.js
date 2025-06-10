@@ -1,11 +1,11 @@
 import * as  pageObjects from '../../pageObjects' 
 
-describe('Asset Test Suite ', () => {
+describe('Asset Test Suite', () => {
 
     Cypress.on('uncaught:exception', (err, runnable) => {
         return false;
     });
-    it.only('step 1: should visit the Manage Assets Group Table page', () => {
+    it('step 1: should visit the Manage Assets Group Table page', () => {
         const assetGroup = new  pageObjects.AssetsGroupTable()
         assetGroup.openUrl()
         cy.wait(1000)
@@ -178,7 +178,7 @@ it('step 12: should visit ManageUserRole', () => {
        
         })
  it('step 13: should visit the Booking Schedule page', () => {
-        cy.fixture('loginDetails').then(function(){
+        //cy.fixture('loginDetails').then(function(){
         const bookingSchedules = new pageObjects.BookingSchedule()
         bookingSchedules.openUrl()
         bookingSchedules.clickBurgerMenu()
@@ -190,4 +190,16 @@ it('step 12: should visit ManageUserRole', () => {
             
             
         })
+        it.only('checking site transfer', () => {
+            const transfer = new pageObjects.SiteTransfer()
+            transfer.openUrl()
+            cy.wait(1000)
+            //transfer.clickAddAssetsGroup()
+            transfer.checktransfer()
+            transfer.searchAcrossPages("loki",[0,1,2])
         })
+    
+
+
+
+    
