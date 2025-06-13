@@ -190,7 +190,7 @@ it('step 12: should visit ManageUserRole', () => {
             
             
         })
-        it.only('checking site transfer', () => {
+        it('step 14: checking site transfer', () => {
             const transfer = new pageObjects.SiteTransfer()
             transfer.openUrl()
             cy.wait(1000)
